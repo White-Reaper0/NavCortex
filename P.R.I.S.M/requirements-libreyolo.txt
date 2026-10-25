@@ -1,0 +1,6 @@
+# Optional local CPU-only detector environment. Install only into .venv.
+--index-url https://download.pytorch.org/whl/cpu
+torch==2.4.1+cpu
+torchvision==0.19.1+cpu
+--extra-index-url https://pypi.org/simple
+libreyolo==1.6.0

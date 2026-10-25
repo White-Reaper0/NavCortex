@@ -1,0 +1,8 @@
+{
+  "name": "example_large_ugv",
+  "description": "ILLUSTRATIVE ONLY - not a real vehicle. Shows that the same perception output is judged differently for a bigger chassis: a 10 cm step that stops the rover is drivable here. No model is retrained; only these numbers change.",
+  "camera": {"height_above_ground_m": 0.60, "hfov_deg": 92.0, "pitch_deg": -8.0},
+  "vehicle": {"width_m": 0.60, "length_m": 0.90, "clearance_m": 0.20, "max_step_m": 0.15,
+              "max_slope_deg": 25.0, "max_speed_mps": 1.5, "brake_distance_m": 0.80},
+  "notes": ["Every metric number scales with the camera height, so a profile change also changes the metric scale of the depth stage."]
+}

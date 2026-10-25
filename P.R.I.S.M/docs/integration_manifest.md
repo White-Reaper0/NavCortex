@@ -1,0 +1,24 @@
+# P.R.I.S.M. integration manifest
+
+This is an auditable status record for the offline replay prototype. Versions
+and compatibility are evidence, not a claim that every listed project is active.
+
+| Component | Official source | License / version evidence | Status and interface |
+| --- | --- | --- | --- |
+| OpenCV | https://github.com/opencv/opencv | Existing `.venv`: `opencv-python 4.11.0`; Apache-2.0 upstream | **Active**: decode and existing ORB visual-motion replay. |
+| COLMAP | https://github.com/colmap/colmap | Existing local `tools/external/colmap/4.2.1-nocuda`; native model inspected only | **Active diagnostic input** through `prism.colmap_inspection`; local-only with bundled-component licensing caveat. No rerun or redistribution. |
+| LibreYOLO / LibreYOLO9t | https://github.com/LibreYOLO/libreyolo; https://huggingface.co/LibreYOLO/LibreYOLO9t | `libreyolo==1.6.0`; local asset hash `b4d7e93f9e0393830fb42e6135c0e3464b2673b05e5ecf4b7f2374ec18e39eb2`; local provenance says MIT implementation/model-card | **Active when checkpoint loads** through `prism.libreyolo_provider`. Typed 2-D evidence only. No Ultralytics package/weights. |
+| Open3D | https://github.com/isl-org/Open3D | Installed `.venv`: `open3d==0.20.0`; MIT; Windows CPython 3.11 wheel | **Active optional**: `prism.integrations.geometry.open3d_sparse_inspection` loads native COLMAP XYZ/RGB without rescaling; integrated replay may export `sparse_points_open3d_native.ply`. |
+| stella_vslam | https://github.com/stella-cv/stella_vslam | BSD-2-Clause; official installation documentation recommends WSL for Windows 10 and requires C++ dependencies including g2o/SuiteSparse/FBoW | **Blocked optional**: `prism.integrations.localization.localization_backend_report` records `wsl --status` probe results and build/WSL blockers; no binary vendored under `tools/external/`. |
+| RTAB-Map | https://github.com/introlab/rtabmap | BSD-3-Clause upstream | **Blocked optional**: monocular RGB clip only; no ROS/GPU; synthetic depth from COLMAP is prohibited. Status exported in `localization_backends.json`. |
+| Grid Map | https://github.com/ANYbotics/grid_map | BSD-3-Clause; upstream LICENSE re-verified 2026-10-24; ROS ecosystem dependency | **Concept adapted**: `prism.integrations.terrain_grid` implements ROS-free layers (elevation/support/step/slope/roughness/traversability/confidence/age) over `BEVMap`; unknown cells stay UNKNOWN; variance/normals are not fabricated. No upstream source copied. |
+| Elevation Mapping | https://github.com/ANYbotics/elevation_mapping | BSD-3-Clause; ROS/metric elevation requirements | **Reference only**, blocked by missing metric spatial input and ROS. |
+| Traversability Estimation | https://github.com/leggedrobotics/traversability_estimation | BSD-3-Clause; ROS/metric elevation requirements | **Reference only**, blocked by missing metric spatial input and ROS. |
+| Norfair | https://github.com/tryolabs/norfair | Installed `.venv`: `norfair==2.3.0`, `filterpy==1.4.5`; BSD-3-Clause; Python >=3.8 supported | **Active when importable** through `NorfairImageTracker`; it tracks detector centroids in image coordinates only. The deterministic IoU fallback is used only if that optional import/runtime fails. |
+| Provider contract | Project-owned | `prism/integrations/provider_contract.py` | **Active**: runtime-checkable `FrameObservationProvider` (`config`, `__call__(DecodedFrame) -> VideoReplayInput`); no control output. |
+| YOLOP | https://github.com/hustvl/YOLOP | Repo `LICENSE` = MIT (fetched 2026-10-24); README lists YOLOv5s as a reference and helpers are YOLOv5-derived, so chain-of-title is **unverified**; BDD100K dataset BSD-3-Clause | **Evaluate only**: local ONNX `tools/external/yolop/yolop-320-320.onnx` (SHA-256 `86d6e8b6…a07369`, gitignored) via OpenCV DNN CPU; detection-only observation; segmentation outputs recorded as statistics, never as traversability. Not the default detector. |
+| Basalt | https://github.com/VladyslavUsenko/basalt | BSD-3-Clause (upstream LICENSE re-verified 2026-10-24) | **Blocked optional**: requires IMU + camera-IMU calibration that the clips do not contain; mono mode is not VIO. Status exported in `localization_backends.json`. |
+| LibreDepthAnything3l-depth | https://huggingface.co/LibreYOLO/LibreDepthAnything3l-depth | Non-YOLO neural depth candidate | **Excluded** by the YOLO-family-only architecture constraint; no weights/dependencies downloaded. |
+| LibreMiDaSs-depth | https://huggingface.co/LibreYOLO/LibreMiDaSs-depth | Non-YOLO neural depth candidate | **Excluded** by the YOLO-family-only architecture constraint; no weights/dependencies downloaded. |
+
+The selected operational localization backend is the existing **OpenCV tracking-only + COLMAP sparse diagnostic path**. Its outputs are relative-only unless separately calibrated and scale-aligned. It is not a localization accuracy claim.

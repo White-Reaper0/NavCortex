@@ -1,0 +1,62 @@
+[
+  {
+    "clip_id": "clip_01",
+    "source_start_s": 90.0,
+    "scene": "daylight gravel park trail between grass banks, pedestrians and bicycles ahead",
+    "lighting": "daylight",
+    "stresses": "mixed trail/grass terrain, late-appearing dynamic obstacles",
+    "path": "D:\\HARSHIT\\UVG\\clips\\clip_01.mp4",
+    "width": 1280,
+    "height": 720,
+    "frames": 300,
+    "fps": "30/1"
+  },
+  {
+    "clip_id": "clip_02",
+    "source_start_s": 136.0,
+    "scene": "wide gravel path, iron railings on the right, grass verges and tree line",
+    "lighting": "daylight",
+    "stresses": "clean geometry, a long straight run, a rigid lateral boundary",
+    "path": "D:\\HARSHIT\\UVG\\clips\\clip_02.mp4",
+    "width": 1280,
+    "height": 720,
+    "frames": 300,
+    "fps": "30/1"
+  },
+  {
+    "clip_id": "clip_03",
+    "source_start_s": 420.5,
+    "scene": "dusk earth path through parkland past a brick wall and grass banks",
+    "lighting": "dusk",
+    "stresses": "falling light, low-texture ground, raised verges either side",
+    "path": "D:\\HARSHIT\\UVG\\clips\\clip_03.mp4",
+    "width": 1280,
+    "height": 720,
+    "frames": 300,
+    "fps": "30/1"
+  },
+  {
+    "clip_id": "clip_04",
+    "source_start_s": 511.5,
+    "scene": "low-light service yard: parked vans and cars, kerbs, brick wall, grass verge",
+    "lighting": "low light",
+    "stresses": "static vehicle obstacles and kerb steps at low illumination",
+    "path": "D:\\HARSHIT\\UVG\\clips\\clip_04.mp4",
+    "width": 1280,
+    "height": 720,
+    "frames": 300,
+    "fps": "30/1"
+  },
+  {
+    "clip_id": "clip_05",
+    "source_start_s": 665.0,
+    "scene": "low-light path with parked cars, railings and a pedestrian crossing ahead",
+    "lighting": "low light",
+    "stresses": "a moving pedestrian plus degraded depth confidence",
+    "path": "D:\\HARSHIT\\UVG\\clips\\clip_05.mp4",
+    "width": 1280,
+    "height": 720,
+    "frames": 300,
+    "fps": "30/1"
+  }
+]

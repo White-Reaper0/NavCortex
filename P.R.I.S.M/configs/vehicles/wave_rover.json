@@ -1,0 +1,13 @@
+{
+  "name": "wave_rover",
+  "description": "Target rover: Waveshare WAVE ROVER chassis + Jetson Orin Nano Super + one RGB camera (about USD 365 all in). Camera height, clearance and step limit are the values stated in the SIH26126 presentation.",
+  "camera": {"height_above_ground_m": 0.12, "hfov_deg": 92.0, "pitch_deg": -6.0},
+  "vehicle": {"width_m": 0.22, "length_m": 0.34, "clearance_m": 0.045, "max_step_m": 0.030,
+              "max_slope_deg": 22.0, "max_speed_mps": 0.6, "brake_distance_m": 0.25},
+  "notes": [
+    "height_above_ground_m, clearance_m and max_step_m are the presentation's stated settings.",
+    "hfov_deg and pitch_deg must be replaced by the calibrated values of the camera actually mounted.",
+    "width_m / length_m are carried over from rc_pov; measure the chassis with the camera mount fitted.",
+    "max_speed_mps / brake_distance_m are a deliberately low first-trial limit, to be raised only after a measured brake test."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "prism.colmap_scale_reference/v1",
+  "reviewed": false,
+  "units": "m",
+  "measured_distance": null,
+  "uncertainty": null,
+  "measurement_provenance": {
+    "method": "replace with real measurement method",
+    "observer": "replace with reviewer identity or record ID",
+    "recorded_at": "replace with measurement date/time or source record"
+  },
+  "landmarks": [
+    {
+      "landmark_id": "replace with identifiable scene landmark A",
+      "point3d_id": null,
+      "reconstruction_xyz": [null, null, null]
+    },
+    {
+      "landmark_id": "replace with identifiable scene landmark B",
+      "point3d_id": null,
+      "reconstruction_xyz": [null, null, null]
+    }
+  ]
+}

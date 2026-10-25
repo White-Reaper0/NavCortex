@@ -1,0 +1,8 @@
+{
+  "name": "rc_pov",
+  "description": "The RC car in the recorded demo footage. These are the values every cached result and rendered video in output/ was produced with (identical to the defaults in drishti/config.py).",
+  "camera": {"height_above_ground_m": 0.12, "hfov_deg": 92.0, "pitch_deg": -6.0},
+  "vehicle": {"width_m": 0.22, "length_m": 0.34, "clearance_m": 0.045, "max_step_m": 0.030,
+              "max_slope_deg": 22.0, "max_speed_mps": 1.2, "brake_distance_m": 0.45},
+  "notes": ["Camera height and field of view are documented assumptions for an uncalibrated action-cam, not a calibration."]
+}

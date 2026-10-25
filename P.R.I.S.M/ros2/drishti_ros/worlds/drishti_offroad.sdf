@@ -1,0 +1,258 @@
+<?xml version="1.0" ?>
+<!--
+  DRISHTI test world for Gazebo Harmonic.
+
+  Start (Point A) at the origin facing +x.  Point B at (8, 0).
+  Between them: a U-shaped dead end that opens towards the start (the straight
+  line to B runs into it), a low 6 cm kerb that is above the 4.5 cm clearance,
+  a few boxes, and a pedestrian (actor) who walks across the route.
+
+  The rover matches configs/vehicles/wave_rover.json: 34 x 22 cm footprint,
+  4.5 cm ground clearance, camera 12 cm above the ground pitched 6 deg down,
+  92 deg horizontal field of view, plus an IMU.  Ground-truth odometry and a
+  chassis contact sensor are published for the mission monitor only.
+-->
+<sdf version="1.9">
+  <world name="drishti_offroad">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.62 0.78 0.92 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.85 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.2 -0.9</direction>
+    </light>
+
+    <!-- gravel-coloured ground -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>60 60</size></plane></geometry>
+          <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>60 60</size></plane></geometry>
+          <material><ambient>0.55 0.50 0.42 1</ambient><diffuse>0.55 0.50 0.42 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- grass verges either side of the route -->
+    <model name="grass_left">
+      <static>true</static>
+      <pose>4 3.5 0.001 0 0 0</pose>
+      <link name="link"><visual name="v"><geometry><box><size>14 3 0.002</size></box></geometry>
+        <material><ambient>0.30 0.55 0.25 1</ambient><diffuse>0.30 0.55 0.25 1</diffuse></material></visual></link>
+    </model>
+    <model name="grass_right">
+      <static>true</static>
+      <pose>4 -3.5 0.001 0 0 0</pose>
+      <link name="link"><visual name="v"><geometry><box><size>14 3 0.002</size></box></geometry>
+        <material><ambient>0.30 0.55 0.25 1</ambient><diffuse>0.30 0.55 0.25 1</diffuse></material></visual></link>
+    </model>
+
+    <!-- U-shaped dead end, opening towards the start: back wall at x=5.5 -->
+    <model name="dead_end">
+      <static>true</static>
+      <link name="back">
+        <pose>5.5 0 0.2 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.12 2.4 0.4</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.12 2.4 0.4</size></box></geometry>
+          <material><ambient>0.55 0.25 0.2 1</ambient><diffuse>0.6 0.3 0.25 1</diffuse></material></visual>
+      </link>
+      <link name="left">
+        <pose>4.25 1.2 0.2 0 0 0</pose>
+        <collision name="c"><geometry><box><size>2.5 0.12 0.4</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>2.5 0.12 0.4</size></box></geometry>
+          <material><ambient>0.55 0.25 0.2 1</ambient><diffuse>0.6 0.3 0.25 1</diffuse></material></visual>
+      </link>
+      <link name="right">
+        <pose>4.25 -1.2 0.2 0 0 0</pose>
+        <collision name="c"><geometry><box><size>2.5 0.12 0.4</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>2.5 0.12 0.4</size></box></geometry>
+          <material><ambient>0.55 0.25 0.2 1</ambient><diffuse>0.6 0.3 0.25 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- a 6 cm kerb: above the 4.5 cm clearance, so it is an obstacle for this rover -->
+    <model name="kerb">
+      <static>true</static>
+      <pose>2.0 -2.2 0.03 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.15 1.6 0.06</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 1.6 0.06</size></box></geometry>
+          <material><ambient>0.7 0.7 0.7 1</ambient><diffuse>0.75 0.75 0.75 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="rock_1">
+      <static>true</static>
+      <pose>7.0 2.0 0.12 0 0 0.4</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.3 0.25 0.24</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.3 0.25 0.24</size></box></geometry>
+          <material><ambient>0.4 0.4 0.42 1</ambient><diffuse>0.45 0.45 0.47 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="rock_2">
+      <static>true</static>
+      <pose>2.8 1.6 0.1 0 0 1.1</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.25 0.25 0.2</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.25 0.25 0.2</size></box></geometry>
+          <material><ambient>0.4 0.4 0.42 1</ambient><diffuse>0.45 0.45 0.47 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- Point B marker (visual only) -->
+    <model name="point_b">
+      <static>true</static>
+      <pose>8 0 0.005 0 0 0</pose>
+      <link name="link"><visual name="v"><geometry><cylinder><radius>0.3</radius><length>0.01</length></cylinder></geometry>
+        <material><ambient>0.1 0.6 0.9 1</ambient><diffuse>0.1 0.6 0.9 1</diffuse></material></visual></link>
+    </model>
+
+    <!-- a pedestrian crossing the route behind the dead end (dynamic class) -->
+    <actor name="pedestrian">
+      <skin><filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename><scale>1.0</scale></skin>
+      <animation name="walking">
+        <filename>https://fuel.gazebosim.org/1.0/Mingfei/models/actor/tip/files/meshes/walk.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <script>
+        <loop>true</loop>
+        <delay_start>4.0</delay_start>
+        <auto_start>true</auto_start>
+        <trajectory id="0" type="walking">
+          <waypoint><time>0</time><pose>6.8 -3.0 1.0 0 0 1.5708</pose></waypoint>
+          <waypoint><time>5</time><pose>6.8 3.0 1.0 0 0 1.5708</pose></waypoint>
+          <waypoint><time>5.5</time><pose>6.8 3.0 1.0 0 0 -1.5708</pose></waypoint>
+          <waypoint><time>10.5</time><pose>6.8 -3.0 1.0 0 0 -1.5708</pose></waypoint>
+          <waypoint><time>11</time><pose>6.8 -3.0 1.0 0 0 1.5708</pose></waypoint>
+        </trajectory>
+      </script>
+    </actor>
+
+    <!-- ===================================================== the rover -->
+    <model name="drishti_rover">
+      <pose>0 0 0.045 0 0 0</pose>
+      <link name="chassis">
+        <pose>0 0 0.04 0 0 0</pose>
+        <inertial><mass>2.0</mass>
+          <inertia><ixx>0.01</ixx><iyy>0.02</iyy><izz>0.025</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+        </inertial>
+        <collision name="chassis_collision"><geometry><box><size>0.34 0.22 0.08</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.34 0.22 0.08</size></box></geometry>
+          <material><ambient>0.15 0.15 0.18 1</ambient><diffuse>0.2 0.2 0.25 1</diffuse></material></visual>
+
+        <!-- camera 12 cm above the ground: chassis centre is at 0.085 m -->
+        <sensor name="camera" type="camera">
+          <pose>0.15 0 0.035 0 0.1047 0</pose>
+          <topic>/drishti/camera</topic>
+          <update_rate>30</update_rate>
+          <always_on>true</always_on>
+          <camera>
+            <horizontal_fov>1.6057</horizontal_fov>
+            <image><width>640</width><height>360</height><format>R8G8B8</format></image>
+            <clip><near>0.05</near><far>40</far></clip>
+          </camera>
+        </sensor>
+        <sensor name="imu" type="imu">
+          <topic>/drishti/imu</topic>
+          <update_rate>200</update_rate>
+          <always_on>true</always_on>
+          <imu>
+            <angular_velocity>
+              <z><noise type="gaussian"><mean>0</mean><stddev>0.003</stddev><bias_mean>0.005</bias_mean></noise></z>
+            </angular_velocity>
+            <linear_acceleration>
+              <x><noise type="gaussian"><mean>0</mean><stddev>0.05</stddev></noise></x>
+              <y><noise type="gaussian"><mean>0</mean><stddev>0.05</stddev></noise></y>
+            </linear_acceleration>
+          </imu>
+        </sensor>
+        <sensor name="bumper" type="contact">
+          <topic>/drishti/contacts</topic>
+          <update_rate>50</update_rate>
+          <contact><collision>chassis_collision</collision></contact>
+        </sensor>
+      </link>
+
+      <link name="left_front_wheel">
+        <pose>0.11 0.13 0.0 -1.5708 0 0</pose>
+        <inertial><mass>0.1</mass><inertia><ixx>4e-5</ixx><iyy>4e-5</iyy><izz>8e-5</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+        <collision name="c"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient></material></visual>
+      </link>
+      <link name="left_rear_wheel">
+        <pose>-0.11 0.13 0.0 -1.5708 0 0</pose>
+        <inertial><mass>0.1</mass><inertia><ixx>4e-5</ixx><iyy>4e-5</iyy><izz>8e-5</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+        <collision name="c"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient></material></visual>
+      </link>
+      <link name="right_front_wheel">
+        <pose>0.11 -0.13 0.0 -1.5708 0 0</pose>
+        <inertial><mass>0.1</mass><inertia><ixx>4e-5</ixx><iyy>4e-5</iyy><izz>8e-5</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+        <collision name="c"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient></material></visual>
+      </link>
+      <link name="right_rear_wheel">
+        <pose>-0.11 -0.13 0.0 -1.5708 0 0</pose>
+        <inertial><mass>0.1</mass><inertia><ixx>4e-5</ixx><iyy>4e-5</iyy><izz>8e-5</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+        <collision name="c"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.045</radius><length>0.04</length></cylinder></geometry>
+          <material><ambient>0.05 0.05 0.05 1</ambient></material></visual>
+      </link>
+
+      <joint name="left_front_joint" type="revolute"><parent>chassis</parent><child>left_front_wheel</child>
+        <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint>
+      <joint name="left_rear_joint" type="revolute"><parent>chassis</parent><child>left_rear_wheel</child>
+        <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint>
+      <joint name="right_front_joint" type="revolute"><parent>chassis</parent><child>right_front_wheel</child>
+        <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint>
+      <joint name="right_rear_joint" type="revolute"><parent>chassis</parent><child>right_rear_wheel</child>
+        <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis></joint>
+
+      <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+        <left_joint>left_front_joint</left_joint>
+        <left_joint>left_rear_joint</left_joint>
+        <right_joint>right_front_joint</right_joint>
+        <right_joint>right_rear_joint</right_joint>
+        <wheel_separation>0.26</wheel_separation>
+        <wheel_radius>0.045</wheel_radius>
+        <max_linear_velocity>0.6</max_linear_velocity>
+        <topic>/model/drishti_rover/cmd_vel</topic>
+        <odom_publish_frequency>0</odom_publish_frequency>
+      </plugin>
+      <!-- ground truth for scoring only -->
+      <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+        <odom_frame>world</odom_frame>
+        <robot_base_frame>drishti_rover</robot_base_frame>
+        <odom_publish_frequency>30</odom_publish_frequency>
+        <dimensions>2</dimensions>
+      </plugin>
+    </model>
+  </world>
+</sdf>

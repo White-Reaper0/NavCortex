@@ -1,0 +1,13 @@
+drishti:
+  ros__parameters:
+    device: "cuda"            # "cpu" works, slowly
+    vehicle: "wave_rover"     # configs/vehicles/<name>.json
+    image_topic: "/camera/image_raw"
+    imu_topic: "/imu"
+    goal_topic: "/goal_pose"
+    cmd_topic: "/cmd_vel"
+    control_hz: 10.0
+    watchdog_s: 0.5
+    use_imu: true
+    use_world_model: false    # learned components only suggest; off by default
+    use_policy: false
