@@ -1,0 +1,81 @@
+# ============================================================
+# P.R.I.S.M. — git hygiene
+# Keep source, docs, configs, tests, tools and provenance
+# metadata tracked; keep everything heavy or generated out.
+# ============================================================
+
+# Python virtual environments
+.venv/
+venv/
+env/
+.conda/
+**/.venv/
+**/venv/
+
+# Python build / cache artifacts
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+**/.pytest_cache/
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Generated outputs and caches (regenerate via tools/run_all.py)
+/output/
+/logs/
+/work/
+/temp/
+/media/
+/evaluation/
+/checkpoints/
+/video/
+
+# Log files
+*.log
+*.out
+*.err
+
+# Large model / binary artifacts — never redistributed
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.bin
+*.mp4
+*.avi
+*.mov
+*.zip
+*.ply
+*.npy
+*.npz
+
+# Local downloaded or external tool binaries (COLMAP, YOLOP ONNX, ...)
+tools/external/
+tools/libreyolo_smoke*.out
+tools/libreyolo_smoke*.err
+tools/full_pytest*.out
+tools/full_pytest*.err
+
+# Third-party detector checkpoints (NOTICES keep tracked; binaries never)
+model_assets/libreyolo/*.pt
+model_assets/libreyolo/*.invalid-sha256-*.pt
+
+# Downloaded pretrained third-party weights (manifest.json + README cards
+# stay tracked for provenance; the weight binaries themselves never do)
+model_assets/pretrained/**/.cache/
+
+# ROS 2 build tree
+ros2/**/build/
+ros2/**/install/
+ros2/**/log/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

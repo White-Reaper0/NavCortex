@@ -1,0 +1,145 @@
+{
+  "assets": {
+    "colmap.exe": {
+      "file": "tools\\external\\colmap\\4.2.1-nocuda\\bin\\colmap.exe",
+      "note": "local binary only; this project does not vendor or download COLMAP",
+      "status": "present"
+    },
+    "depth_anything_v2_small_hf": {
+      "downloaded_at": "2026-10-25T12:50:14.532042+00:00",
+      "files": [
+        {
+          "file": "config.json",
+          "sha256": "c56698d3643dde1f83ea2212759e6b31a22b8f827246a36dd007ee8a22b3ff75",
+          "size": 950
+        },
+        {
+          "file": "preprocessor_config.json",
+          "sha256": "d41175c0d889477ca8fc67191e540faef14baf6275157b3fdecf78469e6bbf84",
+          "size": 775
+        },
+        {
+          "file": "README.md",
+          "sha256": "319566441daaac0c5ed83e75a8fd19bae0863f3275e23f147c06fe0906edf6fb",
+          "size": 4400
+        },
+        {
+          "file": "model.safetensors",
+          "sha256": "3152477ce0d8d6978d76b995120de97cb5b928701fd0f817769f59e249a16b70",
+          "size": 99173660
+        }
+      ],
+      "last_checked_at": "2026-10-25T12:57:19.834747+00:00",
+      "license": {
+        "id": "apache-2.0",
+        "note": "recorded from the repository's own card_data; inspect the downloaded LICENSE/README files for the full terms. Weights stay local and are not redistributed.",
+        "source": "model card metadata at https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf",
+        "terms": "permissive, commercial use allowed; attribution and NOTICE retention required",
+        "title": "Apache License 2.0"
+      },
+      "local_dir": "model_assets\\pretrained\\depth_anything_v2_small_hf",
+      "model_id": "depth-anything/Depth-Anything-V2-Small-hf",
+      "revision": "5426e4f0f36572d16453bbda7a8389317b1bef99",
+      "source_url": "https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf",
+      "status": "reused",
+      "weight_format": "model.safetensors"
+    },
+    "libreyolo_detector": {
+      "file": "model_assets\\libreyolo\\LibreYOLO9t.pt",
+      "note": "existing local asset, verified only - never re-downloaded by this tool",
+      "sha256": "b4d7e93f9e0393830fb42e6135c0e3464b2673b05e5ecf4b7f2374ec18e39eb2",
+      "size": 8645036,
+      "status": "present",
+      "verification": {
+        "loaded": true,
+        "loader": "prism.libreyolo_provider.LibreYOLODetectionProvider"
+      }
+    },
+    "mobilenet_v3_small_imagenet1k_v1": {
+      "downloaded_at": "2026-10-25T12:51:11.153921+00:00",
+      "file": "C:\\Users\\Administrator\\.cache\\torch\\hub\\checkpoints\\mobilenet_v3_small-047dcff4.pth",
+      "last_checked_at": "2026-10-25T12:57:29.801353+00:00",
+      "license": {
+        "id": "torchvision pretrained weights (ImageNet-trained backbone)",
+        "note": "ImageNet classification backbone weights only; they provide no trained P.R.I.S.M. terrain predictions. Not redistributed.",
+        "source": "https://download.pytorch.org/models/ - distributed with PyTorch/torchvision"
+      },
+      "model_id": "torchvision:mobilenet_v3_small",
+      "sha256": "047dcff4addef86ea5bc2eff13c9614dc11f47ab1160d0a71a25e7db994f4e1f",
+      "size": 10306551,
+      "source_url": "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
+      "status": "reused",
+      "weights_enum": "MobileNet_V3_Small_Weights.IMAGENET1K_V1"
+    },
+    "open3d": {
+      "status": "available"
+    },
+    "segformer_b0_ade_512_512": {
+      "downloaded_at": "2026-10-25T12:50:17.789086+00:00",
+      "files": [
+        {
+          "file": "config.json",
+          "sha256": "209caa9091e4632f7c8883c11170cd08ad29af68b23c09590aa4a5befb1a2a7f",
+          "size": 6884
+        },
+        {
+          "file": "preprocessor_config.json",
+          "sha256": "8039d1d210abaa7117ad78e58cdfd6141a2ec72c03dae891b3cd76737e422c6c",
+          "size": 271
+        },
+        {
+          "file": "README.md",
+          "sha256": "a738172c9395b26f14e1981f6a95885085cc1239210446d752bf30ad6a9b8538",
+          "size": 3189
+        },
+        {
+          "file": "model.safetensors",
+          "sha256": "6ae39addd01de6b1b8bde2cf677d43a5cd733424b8d186de3f95d1c51fee23f9",
+          "size": 15036944
+        }
+      ],
+      "last_checked_at": "2026-10-25T12:57:19.983748+00:00",
+      "license": {
+        "id": "other",
+        "note": "recorded from the repository's own card_data; inspect the downloaded LICENSE/README files for the full terms. Weights stay local and are not redistributed.",
+        "source": "model card metadata at https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512",
+        "terms": "non-commercial; notice retention required; the HF model card links the license at github.com/NVlabs/SegFormer/blob/master/LICENSE",
+        "title": "NVIDIA Source Code License for SegFormer"
+      },
+      "local_dir": "model_assets\\pretrained\\segformer_b0_ade_512_512",
+      "model_id": "nvidia/segformer-b0-finetuned-ade-512-512",
+      "revision": "489d5cd81a0b59fab9b7ea758d3548ebe99677da",
+      "source_url": "https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512",
+      "status": "reused",
+      "weight_format": "model.safetensors"
+    },
+    "yolop": {
+      "note": "optional evaluation-only asset; not downloaded: weight licensing/provenance is documented as unverified in docs/integration_manifest.md",
+      "status": "not_downloaded_optional"
+    }
+  },
+  "schema": "prism-pretrained-manifest/v1",
+  "updated_at": "2026-10-25T12:58:37.531791+00:00",
+  "verifications": {
+    "depth_anything_v2_small_hf": {
+      "device": "cpu",
+      "load_s": 8.26,
+      "loaded": true,
+      "local_files_only": true,
+      "n_params": 24785089
+    },
+    "mobilenet_v3_small_imagenet1k_v1": {
+      "cache_dir": "C:\\Users\\Administrator\\.cache\\torch\\hub\\checkpoints",
+      "load_s": 1.22,
+      "loaded": true,
+      "n_params": 2542856
+    },
+    "segformer_b0_ade_512_512": {
+      "device": "cpu",
+      "load_s": 0.66,
+      "loaded": true,
+      "local_files_only": true,
+      "n_params": 3752694
+    }
+  }
+}

@@ -1,0 +1,86 @@
+        All Rights Reserved.
+
+Copyright (c) 2026 Harshit Tiwari and contributors.
+
+This software and all associated source code, documentation, models,
+configurations, artifacts, and materials in this repository are the exclusive
+property of the copyright holders. No permission is granted, by implication,
+estoppel, or otherwise, to any person or entity to use, access, run, copy,
+reproduce, publish, distribute, transmit, store, modify, adapt, translate,
+create derivative works from, reverse engineer, decompile, disassemble, or in
+any way exploit any part of this repository.
+
+No person may:
+- use, run, deploy, or otherwise operate this software;
+- copy, reproduce, or redistribute any code, files, outputs, or documentation;
+- modify, transform, translate, adapt, or create derivative works from the
+  pre-existing code or materials;
+- sell, lease, sublicense, assign, transfer, or commercialize this software
+  or any portion of it;
+- use this repository for any purpose without prior written authorization from
+  the copyright holders.
+
+This restriction applies to all content in this repository, including but not
+limited to source code, scripts, configuration files, model assets, generated
+outputs, documentation, and supporting materials, unless a separate written
+permission is explicitly granted in advance by the copyright holders.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDERS OR AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Any unauthorized use, copying, modification, distribution, or exploitation of
+this repository is strictly prohibited and may result in civil and criminal
+liability.
+
+---
+
+NOTE: This license covers the source code in this repository only. The
+demonstration videos under `output/` are derivative works built from
+third-party footage (see README.md > Provenance and credits) and are not
+covered by the license above.
+
+---
+
+## Third-party components and their repositories
+
+P.R.I.S.M.'s own code, configuration, documentation and model-derived artifacts
+are **not** licensed under MIT (nor under any other open-source license) — they
+are All Rights Reserved as stated above. No third-party license — including MIT —
+is granted to, or extends to, P.R.I.S.M.'s own code.
+
+The following third-party repositories remain under their own respective
+licenses, attributed here and (where applicable) via NOTICE files in
+`model_assets/libreyolo/` and provenance records in
+`docs/licenses_and_provenance.md`. Their terms stay in force on their own
+components only.
+
+| Repository | Used as | License in that repository |
+| --- | --- | --- |
+| OpenCV (`opencv-python`) — <https://github.com/opencv/opencv> | decode, ORB tracking, DNN ONNX runtime, display | Apache-2.0 |
+| PyTorch — <https://github.com/pytorch/pytorch> · TorchVision — <https://github.com/pytorch/vision> | inference, training, backbones | BSD-3-Clause |
+| NumPy — <https://github.com/numpy/numpy> · SciPy — <https://github.com/scipy/scipy> | numerics, optimisation | BSD-3-Clause |
+| Transformers — <https://github.com/huggingface/transformers> · huggingface_hub — <https://github.com/huggingface/huggingface_hub> | local-only weight loading; downloads | Apache-2.0 |
+| ONNX Runtime — <https://github.com/microsoft/onnxruntime> | inference | MIT |
+| Open3D — <https://github.com/isl-org/Open3D> | optional viewer | MIT |
+| Norfair — <https://github.com/tryolabs/norfair> | optional tracker | BSD-3-Clause |
+| Stable-Baselines3 — <https://github.com/DLR-RM/stable-baselines3> | historic PPO training | MIT |
+| GTSAM (optional) — <https://github.com/borglab/gtsam> | optional pose-graph backend | BSD-3-Clause |
+| LibreYOLO — <https://github.com/LibreYOLO/libreyolo> · LibreYOLO9t checkpoint — <https://huggingface.co/LibreYOLO/LibreYOLO9t> | 2-D detection evidence; SHA-pinned checkpoint; notices in `model_assets/libreyolo/` | MIT (implementation and model card) |
+| YOLOP — <https://github.com/hustvl/YOLOP> | optional provider; local SHA-pinned ONNX only, never vendored; weight terms UNVERIFIED | MIT (repo license file); weights not cleared for redistribution |
+| COLMAP — <https://github.com/colmap/colmap> | local read-only sparse probe (4.2.1 CPU binary stays external) | BSD-3-Clause upsteam; bundled LSD component AGPL-3.0 — binary NOT redistributed |
+| Depth Anything V2-Small (HF: `depth-anything/Depth-Anything-V2-Small-hf`) | relative depth; local-only weights | Apache-2.0 (model card) |
+| SegFormer B0 ADE20K (HF: `nvidia/segformer-b0-finetuned-ade-512-512`) · NVIDIA SegFormer — <https://github.com/NVlabs/SegFormer> | terrain teacher; local-only | NVIDIA Source Code License (non-commercial); terms recorded at link level |
+| TUM RGB-D benchmark — <https://vision.in.tum.de/data/datasets/rgbd-dataset> | validation trajectories (freiburg1_xyz / rpy / 360) | CC-BY-4.0 (data) · BSD-2-Clause (accompanying code); not redistributed |
+| grid_map — <https://github.com/ANYbotics/grid_map> · elevation_mapping — <https://github.com/leggedrobotics/elevation_mapping> · traversability_estimation — <https://github.com/leggedrobotics/traversability_estimation> | concept reuse only; no source copied | BSD-3-Clause |
+| Basalt — <https://github.com/VladyslavUsenko/basalt> · RTAB-Map — <https://github.com/introlab/rtabmap> · stella_vslam — <https://github.com/stella-cv/stella_vslam> | evaluated integration candidates, not downloaded | BSD-3-Clause / BSD-2-Clause |
+| ROS 2 — <https://github.com/ros2> (Jazzy) · Gazebo — <https://github.com/gazebosim/gz-sim> (Harmonic) | optional deployment targets | Apache-2.0 |
+| Gymnasium — <https://github.com/Farama-Foundation/Gymnasium> | historic RL environment | MIT |
+
+Any use of a component above transfers none of P.R.I.S.M.'s rights: the MIT,
+BSD, Apache or other open-source terms apply to each upstream component as that
+component, and to nothing else in this repository.
