@@ -129,8 +129,8 @@ traversability/uncertainty → odometry → map → goal layer → **D\* Lite** 
 ### 0 · Setup
 
 ```bash
-git clone https://github.com/X-DIABLO-X/navcortex.git
-cd navcortex
+git clone https://github.com/White-Reaper0/NavCortex.git
+cd NavCortex
 pip install -r requirements.txt        # core: numpy, scipy, opencv, torch, transformers, pytest
 # optional extras
 pip install -r requirements-libreyolo.txt
